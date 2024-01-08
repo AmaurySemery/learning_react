@@ -1,9 +1,13 @@
+import React, { Component } from 'react';
 import './App.css';
+import Timer from './components/Timer';
 
-function App() {
-  return (
-    <h2>tomatimer</h2>
-  );
+class App extends Component {
+    render() { 
+        return (
+            <Timer />
+        );
+    }
 }
-
+ 
 export default App;
