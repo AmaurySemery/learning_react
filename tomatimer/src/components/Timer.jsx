@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import ButtonGroup from './ButtonGroup';
 
 class Timer extends Component {
+    // Les fonctions qui modifient l'état doivent rester dans la classe qui comporte l'état, règle fondamentale de React
     state = {
         initialValue: 10,
         duration: 10,
@@ -63,11 +65,7 @@ class Timer extends Component {
                 <h3>{this.state.message}</h3>
                 <div>Durée : {this.state.duration}</div>
 
-                <div>
-                    <button onClick={this.start}>start</button>
-                    <button onClick={this.stop}>stop</button>
-                    <button onClick={this.reset}>reset</button>
-                </div>
+                <ButtonGroup onStart={this.start} onStop={this.stop} onReset={this.reset} />
             </div>
         );
     }
