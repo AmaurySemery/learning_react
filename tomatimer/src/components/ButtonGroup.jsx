@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
+import Button from './Button';
 
 class ButtonGroup extends Component {
-    state = {  } 
     render() { 
         console.log(this.props);
         // onClick appelle une fonction qui est mise à disposition à l'aide des props puis du parent
         return (
         <div>
-            <button onClick={this.props.onStart}>start</button>
-            <button onClick={this.props.onStop}>stop</button>
-            <button onClick={this.props.onReset}>reset</button>
+            <Button text="start" onBtnClick={this.props.onStart} />
+            <Button text="stop" onBtnClick={this.props.onStop} />
+            <Button text="reset" onBtnClick={this.props.onReset} />
         </div>);
     }
 }
