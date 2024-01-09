@@ -2,22 +2,14 @@ import React, { Component } from 'react';
 
 class Timer extends Component {
     state = {
-        initialValue: 5,
-        duration: 5,
+        initialValue: 10,
+        duration: 10,
         handle: 0,
         message: ''
       };
 
-    componentDidMount() {
-        const handle = setInterval(() => {
-            // Appel d'une méthode
-            this.count()
-        // Fonction(s) appelée(s) toutes les secondes
-        }, 1000);
-        // Sauvegarde dans notre état le handle en lui disant qu'il a pour valeur le handle déclaré plus haut
-        this.setState({
-            handle: handle
-        });
+    componentWillUnmount() {
+        this.clean();
     }
 
     count = () => {
@@ -32,18 +24,49 @@ class Timer extends Component {
         }
       };
 
-      clean = (message = 'Compte à rebours réinitialisé') => {
+      clean = () => {
         clearInterval(this.state.handle);   
         this.setState({
-          message: message
+          message: "Terminé !"
+        })
+      }
+
+      start = () => {
+        const handle = setInterval(() => {
+            // Appel d'une méthode
+            this.count()
+        // Fonction(s) appelée(s) toutes les secondes
+        }, 1000);
+        // Sauvegarde dans notre état le handle en lui disant qu'il a pour valeur le handle déclaré plus haut
+        this.setState({
+            handle: handle
+        });
+      }
+
+      stop = () => {
+        this.clean();
+      }
+
+      reset = () => {
+        this.clean();
+        this.setState({
+            duration: this.state.initialValue,
+            message: ''
         })
       }
 
     render() { 
         return (
             <div>
-                <h2>tomatimer !!</h2>
-                {this.state.duration}
+                <h2>tomatimer</h2>
+                <h3>{this.state.message}</h3>
+                <div>Durée : {this.state.duration}</div>
+
+                <div>
+                    <button onClick={this.start}>start</button>
+                    <button onClick={this.stop}>stop</button>
+                    <button onClick={this.reset}>reset</button>
+                </div>
             </div>
         );
     }
