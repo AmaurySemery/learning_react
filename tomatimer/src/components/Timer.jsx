@@ -24,10 +24,10 @@ class Timer extends Component {
         }
       };
 
-      clean = () => {
+      clean = (message) => {
         clearInterval(this.state.handle);   
         this.setState({
-          message: "Terminé !"
+          message: message
         })
       }
 
@@ -39,19 +39,20 @@ class Timer extends Component {
         }, 1000);
         // Sauvegarde dans notre état le handle en lui disant qu'il a pour valeur le handle déclaré plus haut
         this.setState({
-            handle: handle
+            handle: handle,
+            message: ''
         });
       }
 
       stop = () => {
-        this.clean();
+        this.clean('Mis en pause');
       }
 
       reset = () => {
         this.clean();
         this.setState({
             duration: this.state.initialValue,
-            message: ''
+            message: 'Compteur réinitialisé'
         })
       }
 
