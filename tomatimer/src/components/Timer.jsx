@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { toast } from 'react-toastify';
+
 import ButtonGroup from './ButtonGroup';
 
 class Timer extends Component {
@@ -9,6 +11,10 @@ class Timer extends Component {
         handle: 0,
         message: ''
       };
+
+      notify = (text, type) => {
+        toast[type](text, { autoClose: 1500 }); // toast.error => toast['error']
+      }
 
       prependZero = value => {
         return value < 10 ? "0" + value.toString() : value.toString();
@@ -52,6 +58,7 @@ class Timer extends Component {
       }
 
       start = () => {
+        this.notify("Démarrage du compteur !", 'success');
         const handle = setInterval(() => {
             // Appel d'une méthode
             this.count()
@@ -65,10 +72,12 @@ class Timer extends Component {
       }
 
       stop = () => {
+        this.notify("Compteur mis en pause !", 'warning');
         this.clean('Mis en pause');
       }
 
       reset = () => {
+        this.notify("Reset du compteur !", 'error');
         this.clean();
         this.setState({
             duration: this.state.initialValue,
