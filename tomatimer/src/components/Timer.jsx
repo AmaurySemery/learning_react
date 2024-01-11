@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { toast } from 'react-toastify';
 
 import ButtonGroup from './ButtonGroup';
+import Display from './Display';
+import Message from './Message';
 
 class Timer extends Component {
     // Les fonctions qui modifient l'état doivent rester dans la classe qui comporte l'état, règle fondamentale de React
@@ -88,11 +90,9 @@ class Timer extends Component {
     render() { 
         return (
             <div>
-                <h1>{this.props.title}</h1>
-                <h2 style={{marginLeft: 15}}>Durée : {this.formatDuration()}</h2>
-
+                <Display title={this.props.title} timerValue={this.formatDuration()} />
                 <ButtonGroup onStart={this.start} onStop={this.stop} onReset={this.reset} />
-                <div>{this.state.message}</div>
+                <Message text={this.state.message} />
             </div>
         );
     }
