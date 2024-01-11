@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 class Button extends Component {
     render() { 
         return (
-            <button onClick={this.props.onBtnClick}>{this.props.text}</button>
+            <button onClick={this.props.onBtnClick} className={this.props.btnCssClasses} >{this.props.text}</button>
         );
     }
 }

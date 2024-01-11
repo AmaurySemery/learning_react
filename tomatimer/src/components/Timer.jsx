@@ -61,11 +61,11 @@ class Timer extends Component {
     render() { 
         return (
             <div>
-                <h2>tomatimer</h2>
-                <h3>{this.state.message}</h3>
-                <div>Durée : {this.state.duration}</div>
+                <h1>{this.props.title}</h1>
+                <h2 style={{marginLeft: 15}}>Durée : {this.props.duration}</h2>
 
                 <ButtonGroup onStart={this.start} onStop={this.stop} onReset={this.reset} />
+                <div>{this.state.message}</div>
             </div>
         );
     }
